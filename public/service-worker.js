@@ -5,7 +5,6 @@ const DATA_CACHE_NAME = "data-cache-v1";
 const FILES_TO_CACHE = [
   "/",
   "/index.html",
-  "/favicon.ico",
   "/manifest.webmanifest",
   "/index.js",
   "/style.css",
@@ -15,17 +14,14 @@ const FILES_TO_CACHE = [
   "https://cdn.jsdelivr.net/npm/chart.js@2.8.0",
 ];
 
-
 // install
 self.addEventListener("install", function (evt) {
-  // pre cache image data
-  evt.waitUntil(
-    caches.open(DATA_CACHE_NAME).then((cache) => cache.add("/api/images"))
-  );
-
   // pre cache all static assets
   evt.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(FILES_TO_CACHE))
+    caches.open(CACHE_NAME).then((cache) => {
+      console.log("Files were pre-cached.");
+      return cache.addAll(FILES_TO_CACHE);
+    })
   );
 
   // tell the browser to activate this service worker immediately once it
