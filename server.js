@@ -15,7 +15,7 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost/cryptic-lake", {
+mongoose.connect("mongodb://localhost/Budget", {
   useNewUrlParser: true,
   useFindAndModify: false,
   useUnifiedTopology: true,
